@@ -12,7 +12,7 @@ const Header = () => {
                 </div>
                 <div>
                     <form action="" className='bg-slate-100 p-3 rounded-lg flex items-center'>
-                        <input type="text" className='bg-transparent outline-none ' placeholder='Search...' name="" id="" />
+                        <input type="text" className='bg-transparent focus:outline-none w-24 sm:w-64' placeholder='Search...' name="" id="" />
                         <FaSearch className='text-slate-600' />
                     </form>
                 </div>
