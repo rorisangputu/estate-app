@@ -1,4 +1,4 @@
-import React from 'react'
+import { FaSearch } from 'react-icons/fa'
 
 const Header = () => {
     return (
@@ -11,9 +11,9 @@ const Header = () => {
                     </h1>
                 </div>
                 <div>
-                    <form action="" className='bg-slate-100 p-3 rounded-lg'>
-                        <input type="text" className='bg-transparent' placeholder='Search' name="" id="" />
-
+                    <form action="" className='bg-slate-100 p-3 rounded-lg flex items-center'>
+                        <input type="text" className='bg-transparent outline-none ' placeholder='Search...' name="" id="" />
+                        <FaSearch className='text-slate-600' />
                     </form>
                 </div>
             </div>
