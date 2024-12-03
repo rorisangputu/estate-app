@@ -1,5 +1,7 @@
 import { FaSearch } from 'react-icons/fa'
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from 'react-router-dom';
+
 const Header = () => {
     return (
         <header className='bg-slate-200 shadow-md '>
@@ -19,11 +21,11 @@ const Header = () => {
                 <div>
                     <ul className='justify-between hidden md:flex gap-4'>
                         {links.map((link, i) => (
-                            <li key={i}>{link.link}</li>
+                            <Link to={link.href} className='text-slate-700 hover:underline cursor-pointer' key={i}>{link.link}</Link>
                         ))}
                     </ul>
                     <div className='md:hidden'>
-                        <GiHamburgerMenu className='h-7 w-7' />
+                        <GiHamburgerMenu className='h-7 w-7 cursor-pointer text-slate-700' />
                     </div>
                 </div>
             </div>
