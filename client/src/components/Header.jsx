@@ -1,5 +1,5 @@
 import { FaSearch } from 'react-icons/fa'
-
+import { GiHamburgerMenu } from "react-icons/gi";
 const Header = () => {
     return (
         <header className='bg-slate-200 shadow-md '>
@@ -16,9 +16,38 @@ const Header = () => {
                         <FaSearch className='text-slate-600' />
                     </form>
                 </div>
+                <div>
+                    <ul className='justify-between hidden md:flex gap-4'>
+                        {links.map((link, i) => (
+                            <li key={i}>{link.link}</li>
+                        ))}
+                    </ul>
+                    <div className='md:hidden'>
+                        <GiHamburgerMenu className='h-7 w-7' />
+                    </div>
+                </div>
             </div>
         </header>
     )
 }
 
 export default Header
+
+const links = [
+    {
+        link: 'Home',
+        href: '/'
+    },
+    {
+        link: 'About',
+        href: '/about'
+    },
+    {
+        link: 'Profile',
+        href: '/profile'
+    },
+    {
+        link: 'Sign In',
+        href: '/sign-in'
+    },
+]
