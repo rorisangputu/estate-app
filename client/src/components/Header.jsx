@@ -7,10 +7,12 @@ const Header = () => {
         <header className='bg-slate-200 shadow-md '>
             <div className='w-[90%] mx-auto flex justify-between items-center pt-3 pb-3'>
                 <div>
-                    <h1 className='font-bold text-sm sm:text-xl flex flex-wrap gap-1'>
-                        <span className='text-slate-500'>Bright</span>
-                        <span className='text-slate-700'>Estates</span>
-                    </h1>
+                    <Link to={'/'}>
+                        <h1 className='font-bold text-sm sm:text-xl flex flex-wrap gap-1'>
+                            <span className='text-slate-500'>Bright</span>
+                            <span className='text-slate-700'>Estates</span>
+                        </h1>
+                    </Link>
                 </div>
                 <div>
                     <form action="" className='bg-slate-100 p-3 rounded-lg flex items-center'>
