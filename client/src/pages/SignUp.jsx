@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, redirect } from 'react-router-dom'
 
 const SignUp = () => {
     const [formData, setFormData] = useState({})
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     //Handles changing state of inputs and stores to Form state variable
     const handleChange = (e) => {
@@ -15,9 +17,25 @@ const SignUp = () => {
 
     //console.log(formData)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
+        setLoading(true);
+        try {
+            const response = await fetch('/api/auth/sign-up', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
+
+            console.log(data)
+        } catch (error) {
+            console.log(error);
+        }
+
+
     }
 
     return (
