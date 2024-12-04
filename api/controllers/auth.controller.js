@@ -19,7 +19,6 @@ export const signUp = async (req, res, next) => {
         //Return succesful request status code 
         res.status(201).json('User created succesfully!');
     } catch (error) {
-        const errors = Object.values(error.errors).map(err => err.message);
-        next({ errors });
+        next( error );
     }
 }
