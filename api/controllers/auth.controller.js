@@ -37,8 +37,17 @@ export const signIn = async (req, res, next) => {
         //Error if passwords do not match
         if (!validPassword) return next(errorHandler(401, 'Invalid Credentials'))
         
-        //Cookies
-        const token = jwt.sign({id: validUser._id}, process.env.JWT_SECRET)
+        //Web Token
+        const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET, {expiresIn: '30d'})
+        
+        //Adding token to cookie - setting time limit for session
+        const tokenExpiry = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+        res.cookie('access_token', token, { httpOnly: true, expires: new Date(Date.now() + tokenExpiry) })
+            .status(200)
+            .json(validUser);
+        
+        
+        
     } catch (error) {
         next(error);
     }
