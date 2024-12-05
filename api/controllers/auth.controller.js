@@ -42,10 +42,11 @@ export const signIn = async (req, res, next) => {
         
         //Adding token to cookie - setting time limit for session
         const tokenExpiry = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+
+        const { password: pass, ...userInfo } = validUser._doc;
         res.cookie('access_token', token, { httpOnly: true, expires: new Date(Date.now() + tokenExpiry) })
             .status(200)
-            .json(validUser);
-        
+            .json(userInfo);
         
         
     } catch (error) {
