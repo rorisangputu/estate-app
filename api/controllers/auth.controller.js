@@ -22,3 +22,19 @@ export const signUp = async (req, res, next) => {
         next( error );
     }
 }
+
+export const signIn = async (req, res, next) => {
+    const { email, password } = req.body;
+    try {
+        //Checking whether email exists in Db
+        const validUser = await User.findOne({ email });
+        //If email is not found an error occurs
+        if (!validUser) return next(errorHandler(404, 'User not found!'))
+        
+        const validPassword = bcrypt.compareSync(password, validUser.password);
+        if(!validPassword) return next(errorHandler(401, 'Invalid Credentials'))
+    } catch (error) {
+        next(error);
+    }
+
+}
