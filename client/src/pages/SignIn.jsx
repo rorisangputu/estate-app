@@ -24,9 +24,8 @@ const SignIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-
         try {
-            setLoading(true);
+            dispatch(signInStart());
             const response = await fetch('/api/auth/sign-in', {
                 method: 'POST',
                 headers: {
@@ -36,16 +35,13 @@ const SignIn = () => {
             });
             const data = await response.json();
             if (data.success === false) {
-                setLoading(false);
-                setError(data.message);
+                dispatch(signInFailure(data.message));
                 return;
             }
-            setLoading(false);
-            setError(null);
-            navigate('/')
+            dispatch(signInSuccess(data));
+            navigate('/');
         } catch (error) {
-            setError(error.message);
-            setLoading(false);
+            dispatch(signInFailure(error.message))
         }
 
     }
@@ -69,7 +65,7 @@ const SignIn = () => {
                     </button>
                 </form>
                 <p>Create an account: <span className="text-blue-500 cursor-pointer hover:underline"> <Link disabled={loading} to={'/sign-up'}>Sign Up</Link></span></p>
-                {error && <p className='text-red-600 mt-5'>{error.message}</p>}
+                {error && <p className='text-red-600 mt-5'>{error}</p>}
 
             </div >
         </div >
