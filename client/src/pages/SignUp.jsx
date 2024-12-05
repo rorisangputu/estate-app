@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { Link, redirect } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
     const [formData, setFormData] = useState({})
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     //Handles changing state of inputs and stores to Form state variable
     const handleChange = (e) => {
@@ -19,8 +20,10 @@ const SignUp = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
+
+
         try {
+            setLoading(true);
             const response = await fetch('/api/auth/sign-up', {
                 method: 'POST',
                 headers: {
@@ -29,12 +32,18 @@ const SignUp = () => {
                 body: JSON.stringify(formData),
             });
             const data = await response.json();
-
-            console.log(data)
+            if (data.success === false) {
+                setLoading(false);
+                setError(data.message);
+                return;
+            }
+            setLoading(false);
+            setError(null);
+            navigate('/sign-in')
         } catch (error) {
-            console.log(error);
+            setError(error.message);
+            setLoading(false);
         }
-
 
     }
 
@@ -46,19 +55,19 @@ const SignUp = () => {
                     <input type="text" placeholder="Username" className="border p-3 rounded-lg" id="username" onChange={handleChange} />
                     <input type="text" placeholder="Email" className="border p-3 rounded-lg" id="email" onChange={handleChange} />
                     <input type="text" placeholder="Password" className="border p-3 rounded-lg" id="password" onChange={handleChange} />
-                    <button className="bg-slate-700 text-white p-3 rounded-lg uppercase 
-                        hover:opacity-95 cursor-pointer disabled:opacity-80"
+                    <button disabled={loading} className="bg-slate-700 text-white p-3 rounded-lg uppercase 
+                        hover:opacity-95 cursor-pointer disabled:bg-slate-500"
                     >
-                        Sign Up
+                        {loading ? "Loading..." : "Sign Up"}
                     </button>
-                    <button className="uppercase bg-red-700 p-3 text-white rounded-lg cursor-pointer
+                    <button disabled={loading} className="uppercase bg-red-700 p-3 text-white rounded-lg cursor-pointer
                         hover:opacity-95 disabled:opacity-80"
                     >
                         Continue with Google
                     </button>
                 </form>
-                <p>Have an account? <span className="text-blue-500 cursor-pointer hover:underline"> <Link to={'/sign-in'}>Sign In</Link></span></p>
-
+                <p>Have an account? <span className="text-blue-500 cursor-pointer hover:underline"> <Link disabled={loading} to={'/sign-in'}>Sign In</Link></span></p>
+                {error ? <p className='text-red-600 mt-5'>{error.message}</p> : <></>}
             </div >
         </div >
     )
