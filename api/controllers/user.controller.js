@@ -27,7 +27,7 @@ export const updateUserInfo = async (req, res, next) => {
             }
         }, { new: true }) //returns update users information
         
-        const { passwordd, ...rest } = updateUser._doc;
+        const { password: pass , ...rest } = updateUser._doc;
         
         res.status(200).json(rest);
 
