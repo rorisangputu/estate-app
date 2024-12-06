@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
@@ -135,16 +135,20 @@ const Profile = () => {
 
           {/* Update button */}
           <button
+            disabled={loading}
             type="submit"
             className="bg-slate-700 text-white rounded-lg p-3 uppercase w-full hover:opacity-95 disabled:opacity-80"
           >
-            Update
+            {loading ? 'Loading...' : 'Update'}
           </button>
         </form>
         <div className="flex mx-auto w-full justify-between">
           <span className="text-red-700 cursor-pointer">Delete Account</span>
           <span className="text-red-700 cursor-pointer">Sign Out</span>
         </div>
+        <p className='text-center'>
+          {error ? (<span className='text-red-600'>{error}</span>) : ""}
+        </p>
       </div>
     </div>
   );
