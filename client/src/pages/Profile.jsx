@@ -11,8 +11,7 @@ const Profile = () => {
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
-  console.log(formData);
-  console.log(fileUploadError);
+
 
 
 
@@ -62,9 +61,18 @@ const Profile = () => {
           <img
             onClick={() => fileRef.current.click()}
             className="h-24 w-24 rounded-full object-cover self-center cursor-pointer mt-2"
-            src={currentUser.avatar}
+            src={formData.avatar || currentUser.avatar}
             alt="Profile image"
           />
+          <p className='text-center'>
+            {fileUploadError ? (
+              <span className="text-red-700">Error during Image upload!</span>
+            ) : filePerc > 0 && filePerc < 100 ? (
+              <span className="text-slate-600">{`Uploading ${filePerc}%`}</span>
+            ) : filePerc === 100 ? (
+              <span className="text-green-600">Successfully uploaded</span>
+            ) : null}
+          </p>
 
           {/* Input fields */}
           <input
