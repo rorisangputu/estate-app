@@ -82,6 +82,17 @@ export const google = async (req, res, next) => {
                 password: hashedPass,
                 avatar: req.body.photo,
             });
+            await newUser.save();
+            const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+            const { password: pass, ...userInfo } = newUser._doc;
+
+             //Adding token to cookie - setting time limit for session
+            const tokenExpiry = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+            
+            res
+                .cookie('access_token', token, { httpOnly: true, expires: new Date(Date.now() + tokenExpiry) })
+                .status(200)
+                .json(userInfo)
         }
 
     } catch (error) {
