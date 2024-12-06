@@ -15,6 +15,7 @@ const Profile = () => {
             className="hidden" // Make the input completely hidden and not affect layout
             ref={fileRef}
             type="file"
+            accept='image/*'
           />
           <img
             onClick={() => fileRef.current.click()}
