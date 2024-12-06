@@ -1,6 +1,7 @@
 import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken';
+import { userInfo } from 'os';
 
 export const signUp = async (req, res, next) => {
     //Destructuring request body
@@ -53,4 +54,29 @@ export const signIn = async (req, res, next) => {
         next(error);
     }
 
+}
+
+export const google = async (req, res, next) => {
+    try {
+        const user = await User.findOne({ email: req.body.email })
+        
+        if (user) {
+            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+            const { password: pass, ...userInfo } = user._doc;
+
+              //Adding token to cookie - setting time limit for session
+            const tokenExpiry = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+            
+            res
+                .cookie('access_token', token, { httpOnly: true, expires: new Date(Date.now() + tokenExpiry) })
+                .status(200)
+                .json(userInfo)
+            
+        } else {
+            
+        }
+
+    } catch (error) {
+        next(error);
+    }
 }
