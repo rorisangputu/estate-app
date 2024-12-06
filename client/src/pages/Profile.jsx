@@ -15,6 +15,7 @@ const Profile = () => {
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value })
@@ -71,6 +72,7 @@ const Profile = () => {
       }
 
       dispatch(updateUserSuccess(data));
+      setUpdateSuccess(true);
 
     } catch (error) {
       dispatch(updateUserFailure(error.message));
@@ -149,6 +151,7 @@ const Profile = () => {
         <p className='text-center'>
           {error ? (<span className='text-red-600'>{error}</span>) : ""}
         </p>
+        <p className='text-green-600 text-center'>{updateSuccess ? "Profile updated!" : ""}</p>
       </div>
     </div>
   );
