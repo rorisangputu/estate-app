@@ -2,15 +2,14 @@ import bcrypt from 'bcryptjs';
 import User from '../models/user.model.js'
 
 export const updateUserInfo = async (req, res, next) => {
-
+    
     //Checking whether the user who sent the request has the same id
     //as the user whos id is in the url
     if (req.user.id !== req.params.id) return next(errorHandler(401, 'You can only update your own account'))
     
     try {
-
         //Hashing password if user has changed their password
-        if (req.user.password) {
+        if (req.body.password) {
             req.body.password = bcrypt.hashSync(req.body.password, 10);
         }
 
@@ -25,7 +24,12 @@ export const updateUserInfo = async (req, res, next) => {
                 password: req.body.password,
                 avatar: req.body.avatar
             }
-        })
+        }, { new: true }) //returns update users information
+        
+        const { passwordd, ...rest } = updateUser._doc;
+        
+        res.status(200).json(rest);
+
     } catch (error) {
         next(error);
     }
