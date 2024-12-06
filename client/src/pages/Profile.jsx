@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
+import { updateUserStart, updateUserSuccess, updateUserFailure } from '../redux/user/userSlice.js';
+
 
 
 const Profile = () => {
@@ -51,7 +53,7 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
+
 
   }
 
