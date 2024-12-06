@@ -35,3 +35,19 @@ export const updateUserInfo = async (req, res, next) => {
         next(error);
     }
 }
+
+export const deleteUserInfo = async (req, res, next) => {
+    
+    //Checking whether the user who sent the request has the same id
+    //as the user whos id is in the url
+    if (req.user.id !== req.params.id)
+        return next(errorHandler(401, 'You can only delete your own account'));
+
+    try {
+        await User.findByIdAndDelete(req.params.id);
+        res.status(200).json({ message: 'User has been deleted' });
+    } catch (error) {
+        next(error);
+    }
+    
+} 

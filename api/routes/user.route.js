@@ -5,6 +5,6 @@ const router = Router();
 
 
 router.post('/update/:id', verifyToken, updateUserInfo);
-router.post('/delete/:id', verifyToken, deleteUserInfo);
+router.delete('/delete/:id', verifyToken, deleteUserInfo);
 
 export default router;
