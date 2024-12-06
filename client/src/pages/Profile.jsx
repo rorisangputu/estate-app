@@ -53,7 +53,19 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      dispatch(updateUserStart());
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
 
+    } catch (error) {
+      dispatch(updateUserFailure(error.message));
+    }
 
 
   }
