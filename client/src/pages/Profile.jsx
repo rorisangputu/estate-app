@@ -13,8 +13,10 @@ const Profile = () => {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
 
-
-
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value })
+    //console.log(formData)
+  }
 
   useEffect(() => {
     if (file) {
@@ -46,11 +48,18 @@ const Profile = () => {
     );
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    
+
+  }
+
   return (
     <div className="w-full">
       <div className="w-[90%] sm:max-w-lg mx-auto flex flex-col ">
         <h1 className="text-3xl text-center font-semibold my-7">Profile</h1>
-        <form className="flex flex-col mb-5 gap-5 mx-auto w-full">
+        <form onSubmit={handleSubmit} className="flex flex-col mb-5 gap-5 mx-auto w-full">
           {/* Image Upload */}
           <input
             className="hidden" // Make the input completely hidden and not affect layout
@@ -62,7 +71,7 @@ const Profile = () => {
           <img
             onClick={() => fileRef.current.click()}
             className="h-24 w-24 rounded-full object-cover self-center cursor-pointer mt-2"
-            src={formData.avatar || currentUser.avatar}
+            src={formData?.avatar || currentUser.avatar}
             alt="Profile image"
           />
           <p className='text-center'>
@@ -81,20 +90,23 @@ const Profile = () => {
             placeholder="Username"
             className="rounded-lg p-3 w-full"
             id="username"
-            value={currentUser.username}
+            onChange={handleChange}
+            defaultValue={currentUser.username}
           />
           <input
             type="email"
             placeholder="Email"
             className="rounded-lg p-3 w-full"
             id="email"
-            value={currentUser.email}
+            onChange={handleChange}
+            defaultValue={currentUser.email}
           />
           <input
             type="password"
             placeholder="Password"
             className="rounded-lg p-3 w-full"
             id="password"
+            onChange={handleChange}
           />
 
           {/* Update button */}
