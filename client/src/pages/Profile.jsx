@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const Profile = () => {
   const { currentUser } = useSelector((state) => state.user);
   const fileRef = useRef(null);
+  const [file, setFile] = useState(undefined);
+
+  console.log(file);
 
   return (
     <div className="w-full">
@@ -16,6 +19,7 @@ const Profile = () => {
             ref={fileRef}
             type="file"
             accept='image/*'
+            onChange={(e) => setFile(e.target.files[0])}
           />
           <img
             onClick={() => fileRef.current.click()}
