@@ -52,7 +52,7 @@ const SignIn = () => {
                 <h1 className="text-3xl text-center font-semibold my-7" > Sign In</h1>
                 <form onSubmit={handleSubmit} action="" className="flex flex-col mb-7 gap-3  mx-auto">
                     <input type="text" placeholder="Email" className="border p-3 rounded-lg" id="email" onChange={handleChange} />
-                    <input type="text" placeholder="Password" className="border p-3 rounded-lg" id="password" onChange={handleChange} />
+                    <input type="password" placeholder="Password" className="border p-3 rounded-lg" id="password" onChange={handleChange} />
                     <button disabled={loading} className="bg-slate-700 text-white p-3 rounded-lg uppercase 
                         hover:opacity-95 cursor-pointer disabled:bg-slate-500"
                     >
