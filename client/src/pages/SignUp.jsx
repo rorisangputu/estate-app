@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import OAuth from '../components/OAuth';
 
 const SignUp = () => {
     const [formData, setFormData] = useState({})
@@ -60,11 +61,7 @@ const SignUp = () => {
                     >
                         {loading ? "Loading..." : "Sign Up"}
                     </button>
-                    <button disabled={loading} className="uppercase bg-red-700 p-3 text-white rounded-lg cursor-pointer
-                        hover:opacity-95 disabled:opacity-80"
-                    >
-                        Continue with Google
-                    </button>
+                    <OAuth />
                 </form>
                 <p>Have an account? <span className="text-blue-500 cursor-pointer hover:underline"> <Link disabled={loading} to={'/sign-in'}>Sign In</Link></span></p>
                 {error ? <p className='text-red-600 mt-5'>{error.message}</p> : <></>}
