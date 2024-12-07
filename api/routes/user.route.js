@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import { Router } from "express";
 import {  deleteUserInfo, updateUserInfo } from "../controllers/user.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
 const router = Router();
