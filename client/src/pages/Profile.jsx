@@ -161,7 +161,7 @@ const Profile = () => {
           />
           <p className="text-center">
             {fileUploadError ? (
-              <span className="text-red-700">Error during Image upload!</span>
+              <span className="text-red-700">Error during Image upload! Image must be less than 1MB</span>
             ) : filePerc > 0 && filePerc < 100 ? (
               <span className="text-slate-600">{`Uploading ${filePerc}%`}</span>
             ) : filePerc === 100 ? (
