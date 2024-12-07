@@ -1,9 +1,10 @@
 import { Router } from "express";
-import { createListing } from "../controllers/listing.controller";
+import { createListing, listings } from "../controllers/listing.controller.js";
+import { verifyToken } from "../utils/verifyUser.js";
 
 const router = Router();
 
-router.get('/',);
-router.post('/create', createListing)
+router.get('/', listings);
+router.post('/create', verifyToken, createListing)
 
 export default router;
