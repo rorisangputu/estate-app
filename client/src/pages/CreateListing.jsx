@@ -8,7 +8,7 @@ const CreateListing = () => {
     const [formData, setFormData] = useState({
         imageUrls: [],
     });
-
+    console.log(formData);
     const handleImageSubmit = (e) => {
         if (files.length > 0 && files.length < 7) {
             const promises = [];
@@ -31,6 +31,10 @@ const CreateListing = () => {
             const uploadTask = uploadBytesResumable(storageRef, file);
 
             uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log(`Upload is ${progress}% done`);
+                },
                 (error) => {
                     reject(error);
                 },
