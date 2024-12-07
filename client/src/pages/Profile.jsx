@@ -20,7 +20,7 @@ import {
   signOutUserFailure
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -139,7 +139,7 @@ const Profile = () => {
 
   return (
     <div className="w-full">
-      <div className="w-[90%] sm:max-w-lg mx-auto flex flex-col ">
+      <div className="w-[90%] sm:max-w-lg mx-auto flex flex-col mb-7">
         <h1 className="text-3xl text-center font-semibold my-7">Profile</h1>
         <form
           onSubmit={handleSubmit}
@@ -203,6 +203,9 @@ const Profile = () => {
             {loading ? "Loading..." : "Update"}
           </button>
         </form>
+        <Link to={'/create-listing'}>
+          <p className="p-3 uppercase text-center mb-5 text-white bg-green-600 rounded-lg">Create Listing</p>
+        </Link>
         <div className="flex mx-auto w-full justify-between">
           <span
             onClick={handleDeleteUser}
