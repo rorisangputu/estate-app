@@ -116,7 +116,20 @@ const CreateListing = () => {
         try {
             setSubmitLoading(true);
             setSubmitError(false);
-            
+            const res = await fetch('/api/listing/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await res.json();
+            setSubmitLoading(false);
+            if (data.success === false) {
+                setSubmitError(data.message);
+            }
+
         } catch (error) {
             setSubmitError(error.message);
             setSubmitLoading(false);
@@ -309,7 +322,7 @@ const CreateListing = () => {
                         type="submit"
                         className="uppercase p-3 bg-slate-700 text-white 
                     rounded-lg hover:opacity-95 disabled:opacity-80">
-                        create listing
+                        {submitLoading ? 'creating...' : 'create listing'}
                     </button>
                 </div>
                 {/* BOTTOM | RIGHT END*/}
