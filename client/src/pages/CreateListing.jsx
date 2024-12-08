@@ -173,11 +173,19 @@ const CreateListing = () => {
                         />
                         <button type="button" onClick={handleImageSubmit}
                             className="uppercase p-3 border rounded-md text-center 
-                            border-green-700 text-green-700 hover:shadow-lg disabled:opacity-80"
+                            border-green-700 text-green-700 hover:shadow-xl hover:bg-green-600 hover:text-white disabled:opacity-80"
                         >upload</button>
                     </div>
                     {/* UPLOAD IMAGE SYSTEM END */}
-
+                    <p className="text-red-600">{imageUploadError && imageUploadError}</p>
+                    {
+                        formData.imageUrls.length > 0 && formData.imageUrls.map((url) => (
+                            <div key={url} className="p-3 rounded-lg border border-gray-300 my-3 flex justify-between items-center">
+                                <img src={url} alt="listing image" className="w-30 h-20 object-contain rounded-lg" />
+                                <button className="p-3 border border-red-700 text-red-700 uppercase hover:shadow-xl hover:bg-red-700 hover:text-white">Delete</button>
+                            </div>
+                        ))
+                    }
                     {/* CREATE BUTTON */}
                     <button
                         type="submit"
@@ -185,7 +193,6 @@ const CreateListing = () => {
                     rounded-lg hover:opacity-95 disabled:opacity-80">
                         create listing
                     </button>
-                    <p className="text-red-600">{imageUploadError && imageUploadError}</p>
                 </div>
                 {/* BOTTOM | RIGHT END*/}
             </form>
