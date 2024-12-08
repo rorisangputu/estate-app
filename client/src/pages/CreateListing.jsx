@@ -9,9 +9,11 @@ const CreateListing = () => {
     const [formData, setFormData] = useState({
         imageUrls: [],
     });
+    const [imageUploadError, setImageUploadError] = useState(false);
+
     console.log(formData);
     const handleImageSubmit = (e) => {
-        if (files.length > 0 && files.length < 7) {
+        if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
             const promises = [];
 
             for (let i = 0; i < files.length; i++) {
@@ -19,10 +21,18 @@ const CreateListing = () => {
             }
 
             Promise.all(promises).then((urls) => {
-                setFormData({ ...formData, imageUrls: formData.imageUrls.concat(urls) });
+                setFormData({
+                    ...formData,
+                    imageUrls: formData.imageUrls.concat(urls)
+                });
+                setImageUploadError(false);
+            }).catch((error) => {
+                setImageUploadError('Image uplaod failed (1 mb max size per image');
             });
+        } else {
+            setImageUploadError('You can only upload 6 images per listing');
         }
-    }
+    };
 
     const storeImage = async (file) => {
         return new Promise((resolve, reject) => {
@@ -175,6 +185,7 @@ const CreateListing = () => {
                     rounded-lg hover:opacity-95 disabled:opacity-80">
                         create listing
                     </button>
+                    <p className="text-red-600">{imageUploadError && imageUploadError}</p>
                 </div>
                 {/* BOTTOM | RIGHT END*/}
             </form>
