@@ -150,7 +150,8 @@ const Profile = () => {
         setShowListingsError(true);
         return
       }
-      setUserListings(data);  
+      setUserListings(data);
+      console.log(userListings);
       setShowListingsError(false);
 
     } catch (error) {
@@ -250,7 +251,17 @@ const Profile = () => {
         >
           Show Listings
         </button>
-        <p className="text-red-700 text-center my-5">{showListingsError ? 'Error Loading Listings' : ''}</p>
+        <p className="text-red-700 text-center my-5">
+          {showListingsError ? 'Error Loading Listings' : ''}
+        </p>
+
+        {userListings && userListings.length > 0 && (
+          userListings.map((listing) => (
+            <div key={listing._id} className="border border-gray-300 rounded-lg">
+                
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
