@@ -8,11 +8,23 @@ const CreateListing = () => {
     const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
         imageUrls: [],
+        name: '',
+        description: '',
+        address: '',
+        type: 'rent',
+        parking: false,
+        furnished: false,
+        offer: false,
+        bedrooms: 1,
+        bathrooms: 1,
+        regularPrice: 0,
+        discountedPrice: 0,
+
     });
     const [imageUploadError, setImageUploadError] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    console.log(formData);
+
     const handleImageSubmit = (e) => {
         if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
             setLoading(true);
@@ -107,6 +119,7 @@ const CreateListing = () => {
                             <input type="checkbox" id="sale" className="w-5" />
                             <span>Sell</span>
                         </div>
+
                         <div className="flex gap-2">
                             <input type="checkbox" id="rent" className="w-5" />
                             <span>Rent</span>
