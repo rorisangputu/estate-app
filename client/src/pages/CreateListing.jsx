@@ -330,6 +330,7 @@ const CreateListing = () => {
                     {/* CREATE BUTTON */}
                     <button
                         type="submit"
+                        disabled={submitLoading || loading}
                         className="uppercase p-3 bg-slate-700 text-white 
                     rounded-lg hover:opacity-95 disabled:opacity-80">
                         {submitLoading ? 'creating...' : 'create listing'}
