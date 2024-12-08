@@ -10,12 +10,13 @@ const CreateListing = () => {
         imageUrls: [],
     });
     const [imageUploadError, setImageUploadError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     console.log(formData);
     const handleImageSubmit = (e) => {
         if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
             const promises = [];
-
+            setLoading(true);
             for (let i = 0; i < files.length; i++) {
                 promises.push(storeImage(files[i]));
             }
@@ -26,11 +27,14 @@ const CreateListing = () => {
                     imageUrls: formData.imageUrls.concat(urls)
                 });
                 setImageUploadError(false);
+                setLoading(false);
             }).catch((error) => {
                 setImageUploadError('Image uplaod failed (1 mb max size per image');
+                setLoading(false);
             });
         } else {
             setImageUploadError('You can only upload 6 images per listing');
+            setLoading(false);
         }
     };
 
@@ -56,6 +60,13 @@ const CreateListing = () => {
                 }
             );
         });
+    }
+
+    const handleDeleteImage = (index) => {
+        setFormData({
+            ...formData,
+            imageUrls: formData.imageUrls.filter((_, i) => i !== index),
+        })
     }
 
 
@@ -171,18 +182,27 @@ const CreateListing = () => {
                             type="file" id="images" accept="image/*"
                             multiple className="border border-gray-300 rounded-lg p-3 w-full"
                         />
-                        <button type="button" onClick={handleImageSubmit}
+                        <button disabled={loading} type="button" onClick={handleImageSubmit}
                             className="uppercase p-3 border rounded-md text-center 
-                            border-green-700 text-green-700 hover:shadow-xl hover:bg-green-600 hover:text-white disabled:opacity-80"
-                        >upload</button>
+                            border-green-700 text-green-700 hover:shadow-xl hover:bg-green-600 
+                            hover:text-white disabled:bg-green-700 disabled:text-white 
+                            disabled:opacity-80"
+                        >{loading ? 'Uploading...' : 'Upload'}</button>
                     </div>
                     {/* UPLOAD IMAGE SYSTEM END */}
                     <p className="text-red-600">{imageUploadError && imageUploadError}</p>
                     {
-                        formData.imageUrls.length > 0 && formData.imageUrls.map((url) => (
+                        formData.imageUrls.length > 0 && formData.imageUrls.map((url, index) => (
                             <div key={url} className="p-3 rounded-lg border border-gray-300 my-3 flex justify-between items-center">
                                 <img src={url} alt="listing image" className="w-30 h-20 object-contain rounded-lg" />
-                                <button className="p-3 border border-red-700 text-red-700 uppercase hover:shadow-xl hover:bg-red-700 hover:text-white">Delete</button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleDeleteImage(index)}
+                                    className="p-3 border border-red-700 text-red-700 
+                                    uppercase hover:shadow-xl hover:bg-red-700 hover:text-white"
+                                >
+                                    Delete
+                                </button>
                             </div>
                         ))
                     }
