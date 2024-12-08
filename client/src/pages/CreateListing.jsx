@@ -2,9 +2,10 @@
 import { useState } from "react"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase.js';
+import { useSelector } from "react-redux";
 
 const CreateListing = () => {
-
+    const { currentUser } = useSelector((state) => state.user);
     const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
         imageUrls: [],
@@ -17,10 +18,12 @@ const CreateListing = () => {
         offer: false,
         bedrooms: 1,
         bathrooms: 1,
-        regularPrice: 10,
-        discountedPrice: 10,
+        regularPrice: 50,
+        discountedPrice: 50,
+        userRef: currentUser._id
 
     });
+
     const [imageUploadError, setImageUploadError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [submitError, setSubmitError] = useState(false);
@@ -250,8 +253,8 @@ const CreateListing = () => {
                                 type="number" id="regularPrice" required
                                 className="p-3 border rounded-lg outline-none w-36"
                                 onChange={handleChange}
-                                min='10'
-                                max='100000'
+                                min='50'
+                                max='100000000000'
                                 value={formData.regularPrice}
                             />
                             <div className="flex flex-col items-center">
@@ -264,8 +267,8 @@ const CreateListing = () => {
                                 type="number" id="discountedPrice" required
                                 className="p-3 border rounded-lg outline-none w-36"
                                 onChange={handleChange}
-                                min='10'
-                                max='100000'
+                                min='50'
+                                max='1000000000'
                                 value={formData.discountedPrice}
                             />
                             <div className="flex flex-col items-center">
@@ -324,6 +327,7 @@ const CreateListing = () => {
                     rounded-lg hover:opacity-95 disabled:opacity-80">
                         {submitLoading ? 'creating...' : 'create listing'}
                     </button>
+                    {submitError && <p className="text-red-700 text-sm">{submitError}</p>}
                 </div>
                 {/* BOTTOM | RIGHT END*/}
             </form>
