@@ -19,9 +19,8 @@ const CreateListing = () => {
         bedrooms: 1,
         bathrooms: 1,
         regularPrice: 50,
-        discountedPrice: 50,
+        discountedPrice: 0,
         userRef: currentUser._id
-
     });
 
     const [imageUploadError, setImageUploadError] = useState(false);
@@ -117,6 +116,10 @@ const CreateListing = () => {
         e.preventDefault();
 
         try {
+            if (formData.imageUrls.length < 1)
+                return setImageUploadError('You must upload at least one (1) image');
+            if (+formData.regularPrice < +formData.discountedPrice)
+                return setSubmitError('Discount price must be lower than regular price');
             setSubmitLoading(true);
             setSubmitError(false);
             const res = await fetch('/api/listing/create', {
@@ -259,23 +262,27 @@ const CreateListing = () => {
                             />
                             <div className="flex flex-col items-center">
                                 <p>Regular Price</p>
-                                <p className="text-sm">($ / month)</p>
+                                {formData.type === 'rent' && (<p className="text-sm">($ / month)</p>)}
                             </div>
                         </div>
-                        <div className="flex gap-2 items-center">
-                            <input
-                                type="number" id="discountedPrice" required
-                                className="p-3 border rounded-lg outline-none w-36"
-                                onChange={handleChange}
-                                min='50'
-                                max='1000000000'
-                                value={formData.discountedPrice}
-                            />
-                            <div className="flex flex-col items-center">
-                                <p>Discounted Price</p>
-                                <p className="text-sm">($ / month)</p>
-                            </div>
-                        </div>
+                        {formData.offer &&
+                            (
+                                <div className="flex gap-2 items-center">
+                                    <input
+                                        type="number" id="discountedPrice" required
+                                        className="p-3 border rounded-lg outline-none w-36"
+                                        onChange={handleChange}
+                                        min='0'
+                                        max='1000000000'
+                                        value={formData.discountedPrice}
+                                    />
+                                    <div className="flex flex-col items-center">
+                                        <p>Discounted Price</p>
+                                        {formData.type === 'rent' && (<p className="text-sm">($ / month)</p>)}
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
                 {/* TOP | LEFT END */}
