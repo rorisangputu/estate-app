@@ -137,6 +137,7 @@ const CreateListing = () => {
             if (data.success === false) {
                 setSubmitError(data.message);
             }
+            navigate(`/listing/${data._id}`)
 
         } catch (error) {
             setSubmitError(error.message);
