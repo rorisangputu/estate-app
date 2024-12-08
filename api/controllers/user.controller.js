@@ -52,3 +52,7 @@ export const deleteUserInfo = async (req, res, next) => {
     }
     
 } 
+
+export const getUserListings = async (req, res, next) => {
+
+}
