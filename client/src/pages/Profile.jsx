@@ -33,6 +33,8 @@ const Profile = () => {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [showListingsError, setShowListingsError] = useState(false);
+  const [userListings, setUserListings] = useState([]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -137,6 +139,25 @@ const Profile = () => {
     }
   }
 
+  const handleShowListings = async () => {
+    try {
+      setShowListingsError(false);
+
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+
+      const data = res.json(res);
+      if (data.success === false) {
+        setShowListingsError(true);
+        return
+      }
+      setUserListings(data);  
+      setShowListingsError(false);
+
+    } catch (error) {
+      setShowListingsError(true)
+    }
+  }
+
   return (
     <div className="w-full">
       <div className="w-[90%] sm:max-w-lg mx-auto flex flex-col mb-7">
@@ -204,7 +225,7 @@ const Profile = () => {
           </button>
         </form>
         <Link to={'/create-listing'}>
-          <p className="p-3 uppercase text-center mb-5 text-white bg-green-600 rounded-lg">Create Listing</p>
+          <p className="p-3 uppercase text-center mb-5 text-white bg-green-700 rounded-lg">Create Listing</p>
         </Link>
         <div className="flex mx-auto w-full justify-between">
           <span
@@ -223,6 +244,13 @@ const Profile = () => {
         <p className="text-green-600 text-center">
           {updateSuccess ? "Profile updated!" : ""}
         </p>
+        <button
+          onClick={handleShowListings}
+          className="text-green-700 w-full"
+        >
+          Show Listings
+        </button>
+        <p className="text-red-700 text-center my-5">{showListingsError ? 'Error Loading Listings' : ''}</p>
       </div>
     </div>
   );
