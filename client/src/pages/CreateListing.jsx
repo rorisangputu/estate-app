@@ -11,20 +11,22 @@ const CreateListing = () => {
         name: '',
         description: '',
         address: '',
-        type: 'rent',
+        type: 'sale',
         parking: false,
         furnished: false,
         offer: false,
         bedrooms: 1,
         bathrooms: 1,
-        regularPrice: 0,
-        discountedPrice: 0,
+        regularPrice: 10,
+        discountedPrice: 10,
 
     });
     const [imageUploadError, setImageUploadError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [submitError, setSubmitError] = useState(false);
+    const [submitLoading, setSubmitLoading] = useState(false);
 
-
+    console.log(formData);
     const handleImageSubmit = (e) => {
         if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
             setLoading(true);
@@ -86,12 +88,46 @@ const CreateListing = () => {
 
     const handleChange = (e) => {
 
+        if (e.target.id === 'sale' || e.target.id === 'rent') {
+            setFormData({
+                ...formData,
+                type: e.target.id
+            });
+        }
+
+        if (e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer') {
+            setFormData({
+                ...formData,
+                [e.target.id]: e.target.checked
+            })
+        }
+
+        if (e.target.type === 'number' || e.target.type === 'text' || e.target.type === 'textarea') {
+            setFormData({
+                ...formData,
+                [e.target.id]: e.target.value
+            });
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            setSubmitLoading(true);
+            setSubmitError(false);
+            
+        } catch (error) {
+            setSubmitError(error.message);
+            setSubmitLoading(false);
+        }
+
     }
 
     return (
         <main className="p-3 max-w-4xl mx-auto">
             <h1 className="text-3xl font-semibold text-center my-7">Create a Listing</h1>
-            <form className="flex flex-col sm:flex-row gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
                 {/* TOP | LEFT */}
                 <div className="flex flex-col gap-4 flex-1">
                     <input
@@ -151,7 +187,7 @@ const CreateListing = () => {
                                 onChange={handleChange}
                                 value={formData.parking}
                             />
-                            <span>Parking spots</span>
+                            <span>Parking Spots</span>
 
                         </div>
                         <div className="flex gap-2">
@@ -201,6 +237,8 @@ const CreateListing = () => {
                                 type="number" id="regularPrice" required
                                 className="p-3 border rounded-lg outline-none w-36"
                                 onChange={handleChange}
+                                min='10'
+                                max='100000'
                                 value={formData.regularPrice}
                             />
                             <div className="flex flex-col items-center">
@@ -213,6 +251,8 @@ const CreateListing = () => {
                                 type="number" id="discountedPrice" required
                                 className="p-3 border rounded-lg outline-none w-36"
                                 onChange={handleChange}
+                                min='10'
+                                max='100000'
                                 value={formData.discountedPrice}
                             />
                             <div className="flex flex-col items-center">
