@@ -15,8 +15,11 @@ const CreateListing = () => {
     console.log(formData);
     const handleImageSubmit = (e) => {
         if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
-            const promises = [];
             setLoading(true);
+            setImageUploadError(false);
+
+            const promises = [];
+
             for (let i = 0; i < files.length; i++) {
                 promises.push(storeImage(files[i]));
             }
