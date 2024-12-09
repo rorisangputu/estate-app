@@ -161,8 +161,20 @@ const Profile = () => {
     }
   }
 
-  const handleListingDelete = (id) => {
-    
+  const handleListingDelete = async (id) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${id}`, {
+        method: "DELETE",
+      })
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -284,8 +296,8 @@ const Profile = () => {
                     Edit
                   </button>
                   <button
-                   onClick={() => handleListingDelete(listing.id)}
-                  className="p-2 rounded-xl text-red-700 uppercase border border-red-600 
+                    onClick={() => handleListingDelete(listing._id)}
+                    className="p-2 rounded-xl text-red-700 uppercase border border-red-600 
                   hover:text-white hover:bg-red-700"
                   >
                     Delete
