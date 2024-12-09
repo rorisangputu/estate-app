@@ -145,13 +145,13 @@ const Profile = () => {
 
       const res = await fetch(`/api/user/listings/${currentUser._id}`);
 
-      const data = res.json(res);
+      const data = await res.json(res);
+
       if (data.success === false) {
         setShowListingsError(true);
         return
       }
       setUserListings(data);
-      console.log(userListings);
       setShowListingsError(false);
 
     } catch (error) {
@@ -258,7 +258,9 @@ const Profile = () => {
         {userListings && userListings.length > 0 && (
           userListings.map((listing) => (
             <div key={listing._id} className="border border-gray-300 rounded-lg">
-                
+              <Link to={`/listing/${listing._id}`}>
+                <img src={listing.imageUrls[0]} alt="Listing Cover" />
+              </Link>
             </div>
           ))
         )}
