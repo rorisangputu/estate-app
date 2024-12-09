@@ -161,6 +161,10 @@ const Profile = () => {
     }
   }
 
+  const handleListingDelete = (id) => {
+    
+  }
+
   return (
     <div className="w-full">
       <div className="w-[90%] sm:max-w-lg mx-auto flex flex-col mb-7">
@@ -279,7 +283,9 @@ const Profile = () => {
                   >
                     Edit
                   </button>
-                  <button className="p-2 rounded-xl text-red-700 uppercase border border-red-600 
+                  <button
+                   onClick={() => handleListingDelete(listing.id)}
+                  className="p-2 rounded-xl text-red-700 uppercase border border-red-600 
                   hover:text-white hover:bg-red-700"
                   >
                     Delete
