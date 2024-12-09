@@ -35,6 +35,7 @@ const Profile = () => {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
+  const [showTitle, setShowTitle] = useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -153,6 +154,7 @@ const Profile = () => {
       }
       setUserListings(data);
       setShowListingsError(false);
+      setShowTitle(true);
 
     } catch (error) {
       setShowListingsError(true)
@@ -247,7 +249,7 @@ const Profile = () => {
         </p>
         <button
           onClick={handleShowListings}
-          className="text-green-700 w-full"
+          className="text-green-700 w-full my-7"
         >
           Show Listings
         </button>
@@ -255,15 +257,38 @@ const Profile = () => {
           {showListingsError ? 'Error Loading Listings' : ''}
         </p>
 
-        {userListings && userListings.length > 0 && (
-          userListings.map((listing) => (
-            <div key={listing._id} className="border border-gray-300 rounded-lg">
-              <Link to={`/listing/${listing._id}`}>
-                <img src={listing.imageUrls[0]} alt="Listing Cover" />
-              </Link>
-            </div>
-          ))
-        )}
+        <div className="flex flex-col gap-4">
+          <h1 className="text-center font-bold text-2xl mb-4">{showTitle && "Your Listings"}</h1>
+          {userListings && userListings.length > 0 && (
+            userListings.map((listing) => (
+              <div key={listing._id}
+                className="border border-gray-300 flex p-3 justify-between 
+                items-center rounded-lg gap-4">
+                <Link to={`/listing/${listing._id}`}>
+                  <img src={listing.imageUrls[0]} alt="Listing Cover"
+                    className="h-24 sm:h-36 w-24 sm:w-36 object-contain" />
+                </Link>
+                <Link to={`/listing/${listing._id}`}
+                  className="font-semibold text-slate-700 flex-1 truncate hover:underline"
+                >
+                  <p>{listing.name}</p>
+                </Link>
+                <div className="flex flex-col gap-3">
+                  <button className="p-2 rounded-xl text-green-700 uppercase border border-green-600 
+                  hover:text-white hover:bg-green-700"
+                  >
+                    Edit
+                  </button>
+                  <button className="p-2 rounded-xl text-red-700 uppercase border border-red-600 
+                  hover:text-white hover:bg-red-700"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );
