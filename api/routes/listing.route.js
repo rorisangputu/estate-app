@@ -6,6 +6,6 @@ const router = Router();
 
 router.get('/', listings);
 router.post('/create', verifyToken, createListing);
-router.post('/delete/:id', verifyToken, deleteListing);
+router.delete('/delete/:id', verifyToken, deleteListing);
 
 export default router;
