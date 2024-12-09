@@ -14,3 +14,7 @@ export const createListing = async (req, res, next) => {
         next(error)
     }
 }
+
+export const deleteListing = async (req, res, next) => {
+    
+}
