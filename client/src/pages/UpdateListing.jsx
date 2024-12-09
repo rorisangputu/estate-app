@@ -30,10 +30,17 @@ const UpdateListing = () => {
     const [submitError, setSubmitError] = useState(false);
     const [submitLoading, setSubmitLoading] = useState(false);
 
+
     useEffect(() => {
         const fetchListing = async () => {
             const listingId = params.id;
-            console.log(listingId); 
+            const listing = await fetch(`/api/listing/get/${listingId}`)
+            const data = await listing.json()
+
+            if (data.success === false) {
+                console.log(data.message);
+            }
+            setFormData(data);
         }
 
         fetchListing();
@@ -132,7 +139,7 @@ const UpdateListing = () => {
                 return setSubmitError('Discount price must be lower than regular price');
             setSubmitLoading(true);
             setSubmitError(false);
-            const res = await fetch('/api/listing/update/', {
+            const res = await fetch(`/api/listing/update/${formData._id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -196,6 +203,7 @@ const UpdateListing = () => {
                                 className="w-5"
                                 onChange={handleChange}
                                 checked={formData.type === 'sale'}
+
                             />
                             <span>Sell</span>
 
