@@ -53,3 +53,7 @@ export const editListing = async (req, res, next) => {
     }
 
 }
+
+export const getListing = async (req, res, next) => {
+    
+}
