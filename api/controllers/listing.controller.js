@@ -30,6 +30,8 @@ export const deleteListing = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+}
 
-
+export const editListing = async (req, res, next) => {
+     
 }
