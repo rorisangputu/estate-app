@@ -8,5 +8,6 @@ router.get('/', listings);
 router.post('/create', verifyToken, createListing);
 router.delete('/delete/:id', verifyToken, deleteListing);
 router.post('/update/:id', verifyToken, editListing);
+router.get('/get/:id', )
 
 export default router;
