@@ -285,17 +285,19 @@ const Profile = () => {
                   <img src={listing.imageUrls[0]} alt="Listing Cover"
                     className="h-24 sm:h-36 w-24 sm:w-36 object-contain" />
                 </Link>
-                <Link to={`/update-listing/${listing._id}`}
+                <Link to={`/listing/${listing._id}`}
                   className="font-semibold text-slate-700 flex-1 truncate hover:underline"
                 >
                   <p>{listing.name}</p>
                 </Link>
                 <div className="flex flex-col gap-3">
-                  <button className="p-2 rounded-xl text-green-700 uppercase border border-green-600 
-                  hover:text-white hover:bg-green-700"
-                  >
-                    Edit
-                  </button>
+                  <Link className="p-2 rounded-xl text-green-700 uppercase border flex justify-center border-green-600 
+                  hover:text-white hover:bg-green-700" to={`/update-listing/${listing._id}`}>
+                    <button className="uppercase"
+                    >
+                      Edit
+                    </button>
+                  </Link>
                   <button
                     onClick={() => handleListingDelete(listing._id)}
                     className="p-2 rounded-xl text-red-700 uppercase border border-red-600 
