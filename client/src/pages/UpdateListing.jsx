@@ -1,12 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase.js';
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateListing = () => {
     const navigate = useNavigate();
+    const params = useParams();
     const { currentUser } = useSelector((state) => state.user);
     const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
@@ -24,13 +25,19 @@ const UpdateListing = () => {
         discountedPrice: 0,
         userRef: currentUser._id
     });
-
     const [imageUploadError, setImageUploadError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [submitError, setSubmitError] = useState(false);
     const [submitLoading, setSubmitLoading] = useState(false);
 
-    console.log(formData);
+    useEffect(() => {
+        const fetchListing = async () => {
+            const listingId = params.id;
+        }
+
+        fetchListing();
+    }, []);
+
     const handleImageSubmit = (e) => {
         if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
             setLoading(true);
