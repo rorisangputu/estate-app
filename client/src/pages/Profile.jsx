@@ -285,7 +285,7 @@ const Profile = () => {
                   <img src={listing.imageUrls[0]} alt="Listing Cover"
                     className="h-24 sm:h-36 w-24 sm:w-36 object-contain" />
                 </Link>
-                <Link to={`/listing/${listing._id}`}
+                <Link to={`/update-listing/${listing._id}`}
                   className="font-semibold text-slate-700 flex-1 truncate hover:underline"
                 >
                   <p>{listing.name}</p>
