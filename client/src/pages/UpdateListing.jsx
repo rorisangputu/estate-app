@@ -224,6 +224,7 @@ const UpdateListing = () => {
                                 className="w-5"
                                 onChange={handleChange}
                                 value={formData.parking}
+                                checked={formData.parking}
                             />
                             <span>Parking Spots</span>
 
@@ -234,6 +235,7 @@ const UpdateListing = () => {
                                 className="w-5"
                                 onChange={handleChange}
                                 value={formData.furnished}
+                                checked={formData.furnished}
                             />
                             <span>Furnished</span>
                         </div>
@@ -243,6 +245,7 @@ const UpdateListing = () => {
                                 className="w-5"
                                 onChange={handleChange}
                                 value={formData.offer}
+                                checked={formData.offer}
                             />
                             <span>Offer</span>
                         </div>
