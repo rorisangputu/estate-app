@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   getDownloadURL,
   getStorage,
+  list,
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
@@ -171,7 +172,7 @@ const Profile = () => {
         console.log(data.message);
         return;
       }
-      
+      setUserListings((prev) => prev.filter((listing) => listing._id !== id));
     } catch (error) {
       console.log(error);
     }
