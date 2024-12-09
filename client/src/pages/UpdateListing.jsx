@@ -33,6 +33,7 @@ const UpdateListing = () => {
     useEffect(() => {
         const fetchListing = async () => {
             const listingId = params.id;
+            console.log(listingId); 
         }
 
         fetchListing();
