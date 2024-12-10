@@ -1,8 +1,20 @@
-import React from 'react'
+/* eslint-disable react/prop-types */
 
-const Contact = () => {
+import { useEffect, useState } from "react"
+
+
+const Contact = ({ listing }) => {
+    const [landlord, setLandlord] = useState(null);
+
+    useEffect(() => {
+
+    }, [listing.userRef]);
+
     return (
-        <div>Contact</div>
+        <div className="flex flex-col">
+            <p>Contact</p>
+            <textarea className="rounded-lg" name="" id=""></textarea>
+        </div>
     )
 }
 
