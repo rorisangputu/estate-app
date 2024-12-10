@@ -132,6 +132,7 @@ const Listing = () => {
                                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
                             </li>
                         </ul>
+                        <hr />
                         {currentUser && listing.userRef !== currentUser._id && !contact && (
                             <button
                                 onClick={() => setContact(true)}
