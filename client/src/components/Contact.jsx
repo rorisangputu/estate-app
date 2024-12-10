@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 
 const Contact = ({ listing }) => {
@@ -42,11 +43,12 @@ const Contact = ({ listing }) => {
                         onChange={onMessageChange}
                     >
                     </textarea>
-                    <button
-                        className="p-3 bg-slate-700 text-white rounded-lg"
+                    <Link
+                        to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
+                        className="p-3 bg-slate-700 text-white rounded-lg text-center"
                     >
-                        Submit
-                    </button>
+                        Send Message
+                    </Link>
                 </div >
             )}
         </>
