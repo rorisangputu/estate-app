@@ -28,12 +28,13 @@ const Contact = ({ listing }) => {
     return (
         <>
             {landlord && (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-4">
                     <p className="font-semibold text-slate-600">
                         Contact <span>{landlord.username}</span> for  <span>{listing.name}</span>
                     </p>
-                    <textarea name="" className="rounded-lg" id=""></textarea>
-                </div>
+                    <textarea name="" className="rounded-lg p-2" id="" rows={4}></textarea>
+                    <button className="p-3 bg-slate-700 text-white rounded-lg">Submit</button>
+                </div >
             )}
         </>
     )
