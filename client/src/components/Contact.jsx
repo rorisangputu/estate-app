@@ -21,6 +21,8 @@ const Contact = ({ listing }) => {
 
             }
         }
+
+        fetchLandlord();
     }, [listing.userRef]);
 
     return (
