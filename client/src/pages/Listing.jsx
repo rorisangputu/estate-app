@@ -39,6 +39,9 @@ const Listing = () => {
         <main>
             {loading && <p className="text-center my-7 text-2xl ">Loading...</p>}
             {error && <p className="text-center text-red-700 my-7 text-xl ">Something went wrong...</p>}
+            {listing && !loading && !error(
+                
+            )}
         </main>
     )
 }
