@@ -1,5 +1,5 @@
 import { FaSearch } from 'react-icons/fa'
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { GiHamburgerMenu } from "react-icons/gi";
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 

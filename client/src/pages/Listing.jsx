@@ -13,6 +13,7 @@ import {
     FaShare,
 } from 'react-icons/fa';
 import { useSelector } from 'react-redux'
+
 const Listing = () => {
     SwiperCore.use([Navigation]);
     const [listing, setListing] = useState({})
