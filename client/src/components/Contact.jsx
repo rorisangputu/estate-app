@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 
 const Contact = ({ listing }) => {
     const [landlord, setLandlord] = useState(null);
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         const fetchLandlord = async () => {
@@ -13,17 +14,18 @@ const Contact = ({ listing }) => {
                 const data = await res.json();
                 if (data.success === false) {
                     return;
-
                 }
                 setLandlord(data);
             } catch (error) {
                 console.log(error);
-
             }
         }
-
         fetchLandlord();
     }, [listing.userRef]);
+
+    const onMessageChange = (e) => {
+        setMessage(e.target.value);
+    }
 
     return (
         <>
@@ -32,8 +34,19 @@ const Contact = ({ listing }) => {
                     <p className="font-semibold text-slate-600">
                         Contact <span>{landlord.username}</span> for  <span>{listing.name}</span>
                     </p>
-                    <textarea name="" className="rounded-lg p-2" id="" rows={4}></textarea>
-                    <button className="p-3 bg-slate-700 text-white rounded-lg">Submit</button>
+                    <textarea name="message"
+                        placeholder="Write a message to the landlord"
+                        className="rounded-lg p-2" id="message"
+                        rows={4}
+                        value={message}
+                        onChange={onMessageChange}
+                    >
+                    </textarea>
+                    <button
+                        className="p-3 bg-slate-700 text-white rounded-lg"
+                    >
+                        Submit
+                    </button>
                 </div >
             )}
         </>
