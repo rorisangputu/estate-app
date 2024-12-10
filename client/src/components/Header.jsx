@@ -45,9 +45,9 @@ const Header = () => {
                         }
                     </ul>
                     <div className='md:hidden'>
-                        <Link to={'/profile'}>
+                        {currentUser && <Link to={'/profile'}>
                             <img className='h-10 w-10 rounded-full object-cover' src={currentUser.avatar} alt="profile " />
-                        </Link>
+                        </Link>}
                     </div>
                 </div>
             </div>
