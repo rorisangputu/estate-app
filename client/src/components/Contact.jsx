@@ -26,10 +26,16 @@ const Contact = ({ listing }) => {
     }, [listing.userRef]);
 
     return (
-        <div className="flex flex-col">
-            <p>Contact</p>
-            <textarea className="rounded-lg" name="" id=""></textarea>
-        </div>
+        <>
+            {landlord && (
+                <div className="flex flex-col gap-2">
+                    <p className="font-semibold text-slate-600">
+                        Contact <span>{landlord.username}</span> for  <span>{listing.name}</span>
+                    </p>
+                    <textarea name="" className="rounded-lg" id=""></textarea>
+                </div>
+            )}
+        </>
     )
 }
 
