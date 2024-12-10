@@ -45,7 +45,9 @@ const Header = () => {
                         }
                     </ul>
                     <div className='md:hidden'>
-                        <GiHamburgerMenu className='h-7 w-7 cursor-pointer text-slate-700' />
+                        <Link to={'/profile'}>
+                            <img className='h-10 w-10 rounded-full object-cover' src={currentUser.avatar} alt="profile " />
+                        </Link>
                     </div>
                 </div>
             </div>
