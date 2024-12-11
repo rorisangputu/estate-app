@@ -13,6 +13,8 @@ const Search = () => {
         sort: 'created_at',
         order: 'desc'
     });
+    const [loading, setLoading] = useState(false);
+    const [listings, setListings] = useState(false);
 
     useEffect(() => {
 
@@ -44,6 +46,17 @@ const Search = () => {
                 sort: sortFromUrl || 'desc'
             })
         }
+
+        const fetchListings = async () => {
+
+            try {
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        fetchListings();
 
     }, [location.search]);
 
