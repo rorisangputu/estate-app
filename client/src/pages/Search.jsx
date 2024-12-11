@@ -10,7 +10,10 @@ const Search = () => {
         sort: 'created_at',
         order: 'desc'
     });
-    
+
+    const handleChange = (e) => {
+
+    };
 
     const handleFilter = () => {
 
@@ -24,6 +27,8 @@ const Search = () => {
                         <input type="text" name=""
                             id="searchTerm" placeholder="Search.."
                             className="border rounded-lg p-3 w-full"
+                            value={sidebarData.searchTerm}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="flex gap-2 flex-wrap items-center">
