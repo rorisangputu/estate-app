@@ -50,7 +50,10 @@ const Search = () => {
                             <span>Sale</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <input type="checkbox" id="rent" className="w-5 h-5" />
+                            <input type="checkbox" id="rent" className="w-5 h-5"
+                                onChange={handleChange}
+                                checked={sidebarData.type = 'rent'}
+                            />
                             <span>Rent</span>
                         </div>
                         <div className="flex items-center gap-2">
