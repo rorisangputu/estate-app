@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
@@ -14,6 +14,18 @@ const Search = () => {
         order: 'desc'
     });
 
+    useEffect(() => {
+
+        const urlParams = new URLSearchParams(location.search);
+        const searchTermFromUrl = urlParams.get('searchTerm');
+        const typeFromUrl = urlParams.get('type');
+        const parkingFromUrl = urlParams.get('parking');
+        const furnishedFromUrl = urlParams.get('furnished');
+        const offerFromUrl = urlParams.get('offer');
+        const orderFromUrl = urlParams.get('order');
+        const sortFromUrl = urlParams.get('sort');
+
+    })
 
     const handleChange = (e) => {
         if (e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale') {
@@ -54,8 +66,9 @@ const Search = () => {
 
         const searchQuery = urlParams.toString();
         navigate(`/search?${searchQuery}`);
-
     }
+
+
     return (
         <div className="flex flex-col md:flex-row">
             <div className="p-7  border border-b-2 md:border-r-2 md:min-h-screen">
