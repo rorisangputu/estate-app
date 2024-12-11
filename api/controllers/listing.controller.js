@@ -87,6 +87,11 @@ export const getListings = async (req, res, next) => {
             parking = { $in: [false, true] };
         }
 
+        let type = req.query.type;
+        if (type === 'undefined' || type === 'all') {
+            type = { $in: ['sale', 'rent'] };
+        }
+
     } catch (error) {
         next(error)
     }
