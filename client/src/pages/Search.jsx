@@ -25,6 +25,26 @@ const Search = () => {
         const orderFromUrl = urlParams.get('order');
         const sortFromUrl = urlParams.get('sort');
 
+        if (
+            searchTermFromUrl ||
+            typeFromUrl ||
+            parkingFromUrl ||
+            furnishedFromUrl ||
+            offerFromUrl ||
+            orderFromUrl ||
+            sortFromUrl
+        ) {
+            setSidebarData({
+                searchTerm: searchTermFromUrl || '',
+                type: typeFromUrl || 'all',
+                parking: parkingFromUrl === 'true' ? true : false,
+                furnished: furnishedFromUrl === 'true' ? true : false,
+                offer: offerFromUrl === 'true' ? true : false,
+                order: orderFromUrl || 'created_at',
+                sort: sortFromUrl || 'desc'
+            })
+        }
+
     })
 
     const handleChange = (e) => {
