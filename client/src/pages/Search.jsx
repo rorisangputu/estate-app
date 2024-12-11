@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
     const navigate = useNavigate();
-
     const [sidebarData, setSidebarData] = useState({
         searchTerm: '',
         type: 'all',
@@ -14,7 +13,7 @@ const Search = () => {
         order: 'desc'
     });
     const [loading, setLoading] = useState(false);
-    const [listings, setListings] = useState(false);
+    const [listings, setListings] = useState([]);
 
     useEffect(() => {
 
@@ -48,12 +47,23 @@ const Search = () => {
         }
 
         const fetchListings = async () => {
-
+            setLoading(true);
             try {
 
+                const searchQuery = urlParams.toString();
+                const res = await fetch(`/api/listing/get/${searchQuery}`);
+                const data = await res.json();
+                if (data.success === false) {
+                    console.log(data.message);
+                    return;
+                }
+                setListings(data);
+                setLoading(false);
             } catch (error) {
-                console.log(error)
+                console.log(error);
+                setLoading(false)
             }
+            setLoading(false);
         }
 
         fetchListings();
