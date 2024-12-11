@@ -39,7 +39,16 @@ const Search = () => {
         }
     };
 
-    const handleFilter = () => {
+    const handleFilter = (e) => {
+        e.preventDefault();
+        const urlParams = new URLSearchParams();
+        urlParams.set('searchTerm', sidebarData.searchTerm);
+        urlParams.set('type', sidebarData.type);
+        urlParams.set('parking', sidebarData.parking);
+        urlParams.set('furnished', sidebarData.furnished);
+        urlParams.set('offer', sidebarData.offer);
+        urlParams.set('order', sidebarData.order);
+        urlParams.set('sort', sidebarData.sort);
 
     }
     return (
