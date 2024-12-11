@@ -12,7 +12,9 @@ const Search = () => {
     });
 
     const handleChange = (e) => {
-
+        if (e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale') {
+            setSidebarData({ ...sidebarData, type: e.target.id })
+        }
     };
 
     const handleFilter = () => {
