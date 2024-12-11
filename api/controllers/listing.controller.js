@@ -108,7 +108,9 @@ export const getListings = async (req, res, next) => {
             furnished,
             parking,
             type,
-        })
+        }).sort(
+            {[sort]: order}
+        )
 
     } catch (error) {
         next(error)
