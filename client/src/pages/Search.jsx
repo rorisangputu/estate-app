@@ -18,6 +18,29 @@ const Search = () => {
                             <input type="checkbox" id="all" className="w-5 h-5" />
                             <span>Sale & Rent</span>
                         </div>
+                        <div className="flex items-center gap-2">
+                            <input type="checkbox" id="sale" className="w-5 h-5" />
+                            <span>Sale</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <input type="checkbox" id="rent" className="w-5 h-5" />
+                            <span>Rent</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <input type="checkbox" id="offer" className="w-5 h-5" />
+                            <span>Offer</span>
+                        </div>
+                    </div>
+                    <div className="flex gap-2 flex-wrap items-center">
+                        <label>Amenities:</label>
+                        <div className="flex items-center gap-2">
+                            <input type="checkbox" id="parking" className="w-5 h-5" />
+                            <span>Parking</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <input type="checkbox" id="furnished" className="w-5 h-5" />
+                            <span>Furnished</span>
+                        </div>
                     </div>
                 </form>
             </div>
