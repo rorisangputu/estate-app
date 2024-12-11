@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
+    const navigate = useNavigate();
+    
     const [sidebarData, setSidebarData] = useState({
         searchTerm: '',
         type: 'all',
@@ -51,6 +53,7 @@ const Search = () => {
         urlParams.set('sort', sidebarData.sort);
 
         const searchQuery = urlParams.toString();
+
     }
     return (
         <div className="flex flex-col md:flex-row">
