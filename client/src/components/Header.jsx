@@ -1,13 +1,27 @@
 import { FaSearch } from 'react-icons/fa'
 // import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const Header = () => {
+    const navigate = useNavigate();
     const { currentUser } = useSelector(state => state.user);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('searchTerm', searchTerm);
+        const searchQuery = urlParams.toString();
+        navigate(`/get?${searchQuery}`);
+    }
+
     return (
         <header className='bg-slate-200 shadow-md '>
             <div className='w-[90%] mx-auto flex justify-between items-center pt-3 pb-3'>
+
+                {/* LOGO */}
                 <div>
                     <Link to={'/'}>
                         <h1 className='font-bold text-sm sm:text-xl flex flex-wrap gap-1'>
@@ -16,12 +30,24 @@ const Header = () => {
                         </h1>
                     </Link>
                 </div>
+
+                {/* SEARCH BAR */}
                 <div>
-                    <form action="" className='bg-slate-100 p-3 rounded-lg flex items-center'>
-                        <input type="text" className='bg-transparent focus:outline-none w-24 sm:w-64' placeholder='Search...' name="" id="" />
-                        <FaSearch className='text-slate-600' />
+                    <form onSubmit={handleSearch} className='bg-slate-100 p-3 rounded-lg flex items-center'>
+                        <input type="text"
+                            className='bg-transparent focus:outline-none w-24 sm:w-64'
+                            placeholder='Search...'
+                            name="" id=""
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+                        <button>
+                            <FaSearch className='text-slate-600' />
+                        </button>
                     </form>
                 </div>
+
+                {/* NAV LINKS */}
                 <div>
                     <ul className='justify-between hidden md:flex gap-4 items-center'>
                         {links.map((link, i) => (
