@@ -72,6 +72,7 @@ export const getListings = async (req, res, next) => {
         const limit = parseInt(req.query.limit) || 9;
         const startIndex = parseInt(req.query.startIndex) || 0;
         
+        //Default behaviour of search function
         let offer = req.query.offer;
         if (offer === 'undefined' || offer === 'false') {
             offer = { $in: [false, true] };
@@ -91,6 +92,10 @@ export const getListings = async (req, res, next) => {
         if (type === 'undefined' || type === 'all') {
             type = { $in: ['sale', 'rent'] };
         }
+
+        //Fetching search term from query
+        const searchTerm = req.query.searchTerm || '';
+
 
     } catch (error) {
         next(error)
