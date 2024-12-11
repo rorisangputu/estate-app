@@ -100,6 +100,16 @@ export const getListings = async (req, res, next) => {
         const sort = req.query.sort || 'createdAt';
         const order = req.query.order || 'desc';
 
+        //Fetching listings based on search and filter options
+        const listings = await Listing.find({
+            //Searching based on word and letters
+            name: { $regex: searchTerm, $option: 'i' }, //search shouldn't be case sensitive
+            offer,
+            furnished,
+            parking,
+            type,
+        })
+
     } catch (error) {
         next(error)
     }
