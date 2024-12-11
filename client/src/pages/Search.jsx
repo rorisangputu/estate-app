@@ -7,7 +7,7 @@ const Search = () => {
         type: 'all',
         parking: false,
         furnished: false,
-        sort: 'created_at',
+        sort: 'createdAt',
         order: 'desc'
     });
 
@@ -74,7 +74,10 @@ const Search = () => {
                             <span>Parking</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <input type="checkbox" id="furnished" className="w-5 h-5"
+                            <input
+                                type="checkbox"
+                                id="furnished"
+                                className="w-5 h-5"
                                 onChange={handleChange}
                                 checked={sidebarData.furnished}
                             />
@@ -85,12 +88,14 @@ const Search = () => {
                         <label className="whitespace-nowrap font-semibold">Sort:</label>
                         <select name=""
                             id="sort_order"
-                            className="border rounded-lg p-3 "
+                            className="border rounded-lg p-3"
+                            onChange={handleChange}
+                            defaultValue={'created_at_desc'}
                         >
-                            <option value="">Price: High to Low</option>
-                            <option value="">Price: Low to High</option>
-                            <option value="">Latest</option>
-                            <option value="">Oldest</option>
+                            <option value="regularPrice_desc">Price: High to Low</option>
+                            <option value="regularPrice_asc">Price: Low to High</option>
+                            <option value="createdAt_desc">Latest</option>
+                            <option value="createdAt_asc">Oldest</option>
                         </select>
                     </div>
                     <button className="p-3 bg-slate-700 text-white uppercase rounded-lg">Filter</button>
