@@ -2,7 +2,7 @@ import { FaSearch } from 'react-icons/fa'
 // import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -16,6 +16,14 @@ const Header = () => {
         const searchQuery = urlParams.toString();
         navigate(`/get?${searchQuery}`);
     }
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search);
+        const searchTermFromUrl = urlParams.get('searchTerm');
+        if (searchTermFromUrl) {
+            setSearchTerm(searchTermFromUrl);
+        }
+    }, [location.search]);
 
     return (
         <header className='bg-slate-200 shadow-md '>
