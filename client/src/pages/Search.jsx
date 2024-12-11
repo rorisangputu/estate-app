@@ -193,7 +193,7 @@ const Search = () => {
                             <option value="createdAt_asc">Oldest</option>
                         </select>
                     </div>
-                    <button className="p-3 bg-slate-700 text-white uppercase rounded-lg">Filter</button>
+                    <button disabled={loading} className="p-3 bg-slate-700 text-white uppercase rounded-lg disabled:opacity-80">Filter</button>
                 </form>
             </div>
             <div className="">
