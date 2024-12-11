@@ -34,7 +34,12 @@ const Search = () => {
                     <div className="flex gap-2 flex-wrap items-center">
                         <label className="font-semibold">Type:</label>
                         <div className="flex items-center gap-2">
-                            <input type="checkbox" id="all" className="w-5 h-5" />
+                            <input
+                                type="checkbox"
+                                id="all" className="w-5 h-5"
+                                onChange={handleChange}
+                                checked={sidebarData.type = 'all'}
+                            />
                             <span>Sale & Rent</span>
                         </div>
                         <div className="flex items-center gap-2">
