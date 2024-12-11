@@ -21,7 +21,7 @@ const Search = () => {
         }
 
         if (e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer') {
-            
+            setSidebarData({ ...sidebarData, [e.target.id]: e.target.checked })
         }
     };
 
