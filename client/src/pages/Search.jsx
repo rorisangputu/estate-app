@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
     const [sidebarData, setSidebarData] = useState({
@@ -11,7 +11,7 @@ const Search = () => {
         sort: 'created_at',
         order: 'desc'
     });
-    console.log(sidebarData)
+
 
     const handleChange = (e) => {
         if (e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale') {
@@ -50,6 +50,7 @@ const Search = () => {
         urlParams.set('order', sidebarData.order);
         urlParams.set('sort', sidebarData.sort);
 
+        const searchQuery = urlParams.toString();
     }
     return (
         <div className="flex flex-col md:flex-row">
