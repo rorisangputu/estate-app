@@ -1,6 +1,17 @@
+import { useState } from "react"
 
 
 const Search = () => {
+    const [sidebarData, setSidebarData] = useState({
+        searchTerm: '',
+        type: 'all',
+        parking: false,
+        furnished: false,
+        sort: 'created_at',
+        order: 'desc'
+    });
+    
+
     const handleFilter = () => {
 
     }
