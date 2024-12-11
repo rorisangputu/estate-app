@@ -74,22 +74,22 @@ export const getListings = async (req, res, next) => {
         
         //Default behaviour of search function
         let offer = req.query.offer;
-        if (offer === 'undefined' || offer === 'false') {
+        if (offer === undefined || offer === 'false') {
             offer = { $in: [false, true] };
         }
 
         let furnished = req.query.furnished;
-        if (furnished === 'undefined' || furnished === 'false') {
+        if (furnished === undefined || furnished === 'false') {
             furnished = { $in: [false, true] };  
         }
 
         let parking = req.query.parking;
-        if (parking === 'undefined' || parking === 'false') {
+        if (parking === undefined || parking === 'false') {
             parking = { $in: [false, true] };
         }
 
         let type = req.query.type;
-        if (type === 'undefined' || type === 'all') {
+        if (type === undefined || type === 'all') {
             type = { $in: ['sale', 'rent'] };
         }
 
@@ -103,7 +103,7 @@ export const getListings = async (req, res, next) => {
         //Fetching listings based on search and filter options
         const listings = await Listing.find({
             //Searching based on word and letters
-            name: { $regex: searchTerm, $option: 'i' }, //search shouldn't be case sensitive
+            name: { $regex: searchTerm, $options: 'i' }, //search shouldn't be case sensitive
             offer,
             furnished,
             parking,
