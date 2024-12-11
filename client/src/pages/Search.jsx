@@ -67,11 +67,17 @@ const Search = () => {
                     <div className="flex gap-2 flex-wrap items-center">
                         <label className="font-semibold">Amenities:</label>
                         <div className="flex items-center gap-2">
-                            <input type="checkbox" id="parking" className="w-5 h-5" />
+                            <input type="checkbox" id="parking" className="w-5 h-5"
+                                onChange={handleChange}
+                                checked={sidebarData.parking}
+                            />
                             <span>Parking</span>
                         </div>
                         <div className="flex items-center gap-2">
-                            <input type="checkbox" id="furnished" className="w-5 h-5" />
+                            <input type="checkbox" id="furnished" className="w-5 h-5"
+                                onChange={handleChange}
+                                checked={sidebarData.furnished}
+                            />
                             <span>Furnished</span>
                         </div>
                     </div>
