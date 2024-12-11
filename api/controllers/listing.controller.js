@@ -82,6 +82,11 @@ export const getListings = async (req, res, next) => {
             furnished = { $in: [false, true] };  
         }
 
+        let parking = req.query.parking;
+        if (parking === 'undefined' || parking === 'false') {
+            parking = { $in: [false, true] };
+        }
+
     } catch (error) {
         next(error)
     }
