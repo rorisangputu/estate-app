@@ -14,6 +14,7 @@ const Search = () => {
     });
     const [loading, setLoading] = useState(false);
     const [listings, setListings] = useState([]);
+    console.log(listings);
 
     useEffect(() => {
 
@@ -51,7 +52,7 @@ const Search = () => {
             try {
 
                 const searchQuery = urlParams.toString();
-                const res = await fetch(`/api/listing/get/${searchQuery}`);
+                const res = await fetch(`/api/listing/get?${searchQuery}`);
                 const data = await res.json();
                 if (data.success === false) {
                     console.log(data.message);
