@@ -1,10 +1,13 @@
 
 
 const Search = () => {
+    const handleFilter = () => {
+
+    }
     return (
         <div className="flex flex-col md:flex-row">
             <div className="p-7  border border-b-2 md:border-r-2 md:min-h-screen">
-                <form action="" className="flex flex-col gap-8">
+                <form onSubmit={handleFilter} className="flex flex-col gap-8">
                     <div className="flex items-center gap-2">
                         <label className="whitespace-nowrap">Search:</label>
                         <input type="text" name=""
@@ -54,7 +57,7 @@ const Search = () => {
                             <option value="">Oldest</option>
                         </select>
                     </div>
-                    <button></button>
+                    <button className="p-3 bg-slate-700 text-white uppercase rounded-lg">Filter</button>
                 </form>
             </div>
             <div className="flex-1">
