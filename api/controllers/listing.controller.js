@@ -65,3 +65,7 @@ export const getListing = async (req, res, next) => {
         next(error);
     }
 }
+
+export const getListings = async (req, res, next) => {
+    
+}
