@@ -96,6 +96,9 @@ export const getListings = async (req, res, next) => {
         //Fetching search term from query
         const searchTerm = req.query.searchTerm || '';
 
+        //Getting sort and order settings as well as adding default
+        const sort = req.query.sort || 'createdAt';
+        const order = req.query.order || 'desc';
 
     } catch (error) {
         next(error)
