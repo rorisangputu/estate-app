@@ -8,7 +8,7 @@ const Search = () => {
                     <div className="flex items-center gap-2">
                         <label className="whitespace-nowrap">Search:</label>
                         <input type="text" name=""
-                            id="searchTern" placeholder="Search.."
+                            id="searchTerm" placeholder="Search.."
                             className="border rounded-lg p-3 w-full"
                         />
                     </div>
@@ -42,6 +42,19 @@ const Search = () => {
                             <span>Furnished</span>
                         </div>
                     </div>
+                    <div className="flex items-center gap-2">
+                        <label className="whitespace-nowrap">Sort:</label>
+                        <select name=""
+                            id="sort_order"
+                            className="border rounded-lg p-3 "
+                        >
+                            <option value="">Price: High to Low</option>
+                            <option value="">Price: Low to High</option>
+                            <option value="">Latest</option>
+                            <option value="">Oldest</option>
+                        </select>
+                    </div>
+                    <button></button>
                 </form>
             </div>
             <div className="flex-1">
