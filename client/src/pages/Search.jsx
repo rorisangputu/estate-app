@@ -7,21 +7,35 @@ const Search = () => {
         type: 'all',
         parking: false,
         furnished: false,
-        sort: 'createdAt',
+        offer: false,
+        sort: 'created_at',
         order: 'desc'
     });
+    console.log(sidebarData)
 
     const handleChange = (e) => {
         if (e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale') {
-            setSidebarData({ ...sidebarData, type: e.target.id })
+            setSidebarData({ ...sidebarData, type: e.target.id });
         }
 
         if (e.target.id === 'searchTerm') {
-            setSidebarData({ ...sidebarData, searchTerm: e.target.value })
+            setSidebarData({ ...sidebarData, searchTerm: e.target.value });
         }
 
         if (e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer') {
-            setSidebarData({ ...sidebarData, [e.target.id]: e.target.checked })
+            setSidebarData({
+                ...sidebarData,
+                [e.target.id]:
+                    e.target.checked || e.target.checked === 'true' ? true : false,
+            });
+        }
+
+        if (e.target.id === 'sort_order') {
+            const sort = e.target.value.split('_')[0] || 'created_at';
+
+            const order = e.target.value.split('_')[1] || 'desc';
+
+            setSidebarData({ ...sidebarData, sort, order });
         }
     };
 
@@ -48,21 +62,21 @@ const Search = () => {
                                 type="checkbox"
                                 id="all" className="w-5 h-5"
                                 onChange={handleChange}
-                                checked={sidebarData.type = 'all'}
+                                checked={sidebarData.type === 'all'}
                             />
                             <span>Sale & Rent</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <input type="checkbox" id="sale" className="w-5 h-5"
                                 onChange={handleChange}
-                                checked={sidebarData.type = 'sale'}
+                                checked={sidebarData.type === 'sale'}
                             />
                             <span>Sale</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <input type="checkbox" id="rent" className="w-5 h-5"
                                 onChange={handleChange}
-                                checked={sidebarData.type = 'rent'}
+                                checked={sidebarData.type === 'rent'}
                             />
                             <span>Rent</span>
                         </div>
