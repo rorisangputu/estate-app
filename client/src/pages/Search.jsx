@@ -12,10 +12,10 @@ const Search = () => {
                             className="border rounded-lg p-3 w-full"
                         />
                     </div>
-                    <div className="">
+                    <div className="flex gap-2 flex-wrap items-center">
                         <label>Type:</label>
-                        <div>
-                            <input type="checkbox" id="all" className="h-5" />
+                        <div className="flex items-center gap-2">
+                            <input type="checkbox" id="all" className="w-5 h-5" />
                             <span>Sale & Rent</span>
                         </div>
                     </div>
