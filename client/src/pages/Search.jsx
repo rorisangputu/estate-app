@@ -15,6 +15,14 @@ const Search = () => {
         if (e.target.id === 'all' || e.target.id === 'rent' || e.target.id === 'sale') {
             setSidebarData({ ...sidebarData, type: e.target.id })
         }
+
+        if (e.target.id === 'searchTerm') {
+            setSidebarData({ ...sidebarData, searchTerm: e.target.value })
+        }
+
+        if (e.target.id === 'parking' || e.target.id === 'furnished' || e.target.id === 'offer') {
+            
+        }
     };
 
     const handleFilter = () => {
