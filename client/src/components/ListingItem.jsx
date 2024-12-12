@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom"
-
+import { MdLocationOn } from "react-icons/md";
 
 const ListingItem = ({ listing }) => {
     return (
@@ -12,7 +12,14 @@ const ListingItem = ({ listing }) => {
                     transition-scale duration-300 "
                 />
                 <div className="p-3">
-                    <p className="text-lg font-semibold text-slate-700 truncate">{listing.name}</p>
+                    <p className="text-lg font-semibold 
+                        text-slate-700 truncate"
+                    >
+                        {listing.name}
+                    </p>
+                    <div>
+                        <MdLocationOn />
+                    </div>
                 </div>
             </Link>
         </div>
