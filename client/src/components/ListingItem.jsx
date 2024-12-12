@@ -28,14 +28,22 @@ const ListingItem = ({ listing }) => {
                     </p>
                     {
                         listing.offer ?
-                            <p className="text-slate-600">
+                            <p className="text-slate-500 text-lg font-semibold">
                                 R {listing.discountedPrice.toLocaleString('en-US')} / month
                             </p>
                             :
-                            <p className="text-slate-600">
+                            <p className="text-slate-500 text-lg font-semibold">
                                 R {listing.regularPrice.toLocaleString('en-US')}
                             </p>
                     }
+                    <div className="flex gap-3">
+                        <div className="font-semibold text-sm text-slate-600">
+                            <p>4 Beds</p>
+                        </div>
+                        <div className="font-semibold text-sm text-slate-600">
+                            <p>5 Baths</p>
+                        </div>
+                    </div>
                 </div>
             </Link>
         </div>
