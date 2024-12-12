@@ -117,7 +117,7 @@ const Search = () => {
 
     return (
         <div className="flex flex-col md:flex-row">
-            <div className="p-7  border border-b-2 md:border-r-2 md:min-h-screen">
+            <div className="p-7 border border-b-2 md:border-r-2 md:min-h-screen">
                 <form onSubmit={handleFilter} className="flex flex-col gap-8">
                     <div className="flex items-center gap-2">
                         <label className="whitespace-nowrap font-semibold">Search:</label>
@@ -206,6 +206,9 @@ const Search = () => {
                     )}
                     {loading && (
                         <p className="text-xl text-slate-700 text-center">Loading..</p>
+                    )}
+                    {!loading && listings && listings.map((listing) =>
+                        <ListingItem key={listing._id} listing={listing} />
                     )}
                 </div>
             </div>
