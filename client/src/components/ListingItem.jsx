@@ -1,8 +1,8 @@
 
 
-const ListingItem = ({ listings }) => {
+const ListingItem = ({ listing }) => {
     return (
-        <div>Hello</div>
+        <div>{listing.name}</div>
     )
 }
 
