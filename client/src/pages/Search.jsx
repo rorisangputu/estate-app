@@ -43,8 +43,8 @@ const Search = () => {
                 parking: parkingFromUrl === 'true' ? true : false,
                 furnished: furnishedFromUrl === 'true' ? true : false,
                 offer: offerFromUrl === 'true' ? true : false,
-                order: orderFromUrl || 'created_at',
-                sort: sortFromUrl || 'desc'
+                order: orderFromUrl || 'desc',
+                sort: sortFromUrl || 'created_at'
             })
         }
 
@@ -57,6 +57,7 @@ const Search = () => {
                 const data = await res.json();
                 if (data.success === false) {
                     console.log(data.message);
+                    setLoading(false);
                     return;
                 }
                 setListings(data);
