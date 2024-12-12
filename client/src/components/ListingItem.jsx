@@ -27,7 +27,14 @@ const ListingItem = ({ listing }) => {
                         {listing.description}
                     </p>
                     {
-                        listing.offer ? <p>R {listing.discountedPrice.toLocaleString('en-US')} / month</p> : <p>R {listing.regularPrice.toLocaleString('en-US')}</p>
+                        listing.offer ?
+                            <p className="text-slate-600">
+                                R {listing.discountedPrice.toLocaleString('en-US')} / month
+                            </p>
+                            :
+                            <p className="text-slate-600">
+                                R {listing.regularPrice.toLocaleString('en-US')}
+                            </p>
                     }
                 </div>
             </Link>
