@@ -2,7 +2,7 @@
 
 const ListingItem = ({ listings }) => {
     return (
-        <div>ListingItem</div>
+        <div>Hello</div>
     )
 }
 
