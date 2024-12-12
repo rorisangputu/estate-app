@@ -21,7 +21,14 @@ const ListingItem = ({ listing }) => {
                         <MdLocationOn className="h-5 w-5 text-green-600" />
                         <p className="truncate text-sm text-gray-600 w-full">{listing.address}</p>
                     </div>
-                    <p className="line-clamp-1 sm:line-clamp-2 text-sm text-gray-600">{listing.description}</p>
+                    <p className="line-clamp-1 sm:line-clamp-2 
+                        text-sm text-gray-600"
+                    >
+                        {listing.description}
+                    </p>
+                    {
+                        listing.offer ? <p>R {listing.discountedPrice.toLocaleString('en-US')} / month</p> : <p>R {listing.regularPrice.toLocaleString('en-US')}</p>
+                    }
                 </div>
             </Link>
         </div>
