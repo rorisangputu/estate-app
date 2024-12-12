@@ -21,6 +21,7 @@ const ListingItem = ({ listing }) => {
                         <MdLocationOn className="h-5 w-5 text-green-600" />
                         <p className="truncate text-sm text-gray-600">{listing.address}</p>
                     </div>
+                    <p className="line-clamp-3"></p>
                 </div>
             </Link>
         </div>
